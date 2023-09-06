@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vendor Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="vendor-dash-styles.css">
+</head>
+<body>
+    <h1>Vendor Dashboard</h1>
+    
+    <div class="container">
+        <!-- Sidebar for Navigation -->
+        <div id="sidebar" class="sidebar">
+            <a href="javascript:void(0)" onclick="loadSection('addItem')">Add New Item</a>
+            <a href="javascript:void(0)" onclick="loadSection('viewAndUpdateItems')">View and Update Current Items</a>
+            
+            <a href="javascript:void(0)" onclick="logout()">Logout</a>
+
+            
+        </div>
+        
+        <!-- Content -->
+        <div id="content" class="content">
+            
+            <h2>Welcome to the Vendor Admin Panel!</h2>
+            <p>Please select an option from the sidebar to get started.</p>
+            
+        </div>
+    </div>
+    
+    <script src="vendor-script.js"></script>
+</body>
+</html>

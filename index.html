@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eventeny Marketplace</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <h1>WELCOME TO THE EVENTENY MARKETPLACE</h1>
+    <div class="image-container">
+        <img src="index.png" alt="Image 1" class="image1">
+        <img src="index2.png" alt="Image 2" class="image2">
+      </div>
+    <div class="container">
+        <div id="vendor-box" class="box">
+            <h2>Are you a vendor?</h2>
+            <button id="vendor-login-btn">Login</button>
+            <p>Don't have an account yet?</p>
+            <button id="vendor-signup-btn">Sign Up</button>
+            <!-- Vendor Login Form -->
+            <form id="vendor-login-form" class="form hidden" action="login.php" method="post">
+                <input type="hidden" name="type" value="vendor">
+                <label for="vendor-username">Username:</label>
+                <input type="text" id="vendor-username" name="vendor-username" required>
+                <label for="vendor-password">Password:</label>
+                <input type="password" id="vendor-password" name="vendor-password" required>
+                <input type="submit" value="Login">
+            </form>
+            <!-- Vendor Signup Form -->
+            <form id="vendor-signup-form" class="form hidden" action="signup.php" method="post">
+                <input type="hidden" name="type" value="vendor">
+                <label for="vendor-signup-username">Username:</label>
+                <input type="text" id="vendor-signup-username" name="vendor-signup-username" required>
+                <label for="vendor-signup-password">Password:</label>
+                <input type="password" id="vendor-signup-password" name="vendor-signup-password" required>
+                <label for="vendor-signup-email">Email:</label>
+                <input type="email" id="vendor-signup-email" name="vendor-signup-email" required>
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+        
+        <div id="customer-box" class="box">
+            <h2>Are you a buyer?</h2>
+            <button id="customer-login-btn">Login</button>
+            <p>Don't have an account yet?</p>
+            <button id="customer-signup-btn">Sign Up</button>
+            <!-- Customer Login Form -->
+            <form id="customer-login-form" class="form hidden" action="login.php" method="post">
+                <input type="hidden" name="type" value="customer">
+                <label for="customer-username">Username:</label>
+                <input type="text" id="customer-username" name="customer-username" required>
+                <label for="customer-password">Password:</label>
+                <input type="password" id="customer-password" name="customer-password" required>
+                <input type="submit" value="Login">
+            </form>
+            <!-- Customer Signup Form -->
+            <form id="customer-signup-form" class="form hidden" action="signup.php" method="post">
+                <input type="hidden" name="type" value="customer">
+                <label for="customer-signup-username">Username:</label>
+                <input type="text" id="customer-signup-username" name="customer-signup-username" required>
+                <label for="customer-signup-password">Password:</label>
+                <input type="password" id="customer-signup-password" name="customer-signup-password" required>
+                <label for="customer-signup-email">Email:</label>
+                <input type="email" id="customer-signup-email" name="customer-signup-email" required>
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+    </div>
+    <script src="index-script.js"></script>
+</body>
+</html>
