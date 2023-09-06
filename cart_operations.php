@@ -5,7 +5,8 @@ header('Content-Type: application/json');
 
 /* BACKEND FUNCTIONS THAT HANDLE LOGIC FOR CART AND ORDERS PAGES */
 
-
+/* Function to connect to the cart and orders database
+   If database doesn't exist create a new one*/
 function connectDatabase() {
     try {
         $db = new PDO('sqlite:cart_data.db');
@@ -36,6 +37,9 @@ function connectDatabase() {
 
 $conn = connectDatabase();
 
+/* Function to fetch items in active customer's cart
+   Used to populate the cart page in the customer dashboard
+   Connects to the items db to get details of items in user's cart*/
 function fetchCartItems($conn, $customer_id) {
     // get cart items from cart_data.db
     $query = "SELECT * FROM cart WHERE customer_id = ?";
@@ -70,7 +74,9 @@ function fetchCartItems($conn, $customer_id) {
 }
 
 
-
+/* Function to add items in the home page to active customer user's cart
+   Used in the add to cart button logic in the customer dashboard
+   Adds a record to the cart table that keeps track of customer_id and item_id*/
 function addItemToCart($conn, $customer_id, $item_id, $quantity) {
     // check if the item already exists in the cart for the given customer
     $checkQuery = "SELECT quantity FROM cart WHERE customer_id = ? AND item_id = ?";
@@ -94,7 +100,9 @@ function addItemToCart($conn, $customer_id, $item_id, $quantity) {
     echo json_encode(['status' => 'Item added to cart']);
 }
 
-
+/* Function to remove item from customer's cart
+   Hard deletes the record containing the item_id and active customer_id
+   Used in the remove item button in the cart page of the customer dahsboard*/
 function removeItemFromCart($conn, $customer_id, $item_id) {
     $query = "DELETE FROM cart WHERE customer_id = ? AND item_id = ?";
     $stmt = $conn->prepare($query);
@@ -102,14 +110,10 @@ function removeItemFromCart($conn, $customer_id, $item_id) {
     echo json_encode(['status' => 'Item removed from cart']);
 }
 
-function updateCartItem($conn, $customer_id, $item_id, $quantity) {
-    $query = "UPDATE cart SET quantity = ? WHERE customer_id = ? AND item_id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->execute([$quantity, $customer_id, $item_id]);
-    echo json_encode(['status' => 'Cart updated']);
-}
 
-
+/* Function to implement checkout logic from the cart page
+   Creates entries in the orders table keeping track of item, customer and ordernumber
+   Removes all entries corresponding to active customer_id from the cart table*/
 function placeOrder($conn, $customer_id) {
     // rnadomly generated order number 
     $order_number = rand(1000, 9999);  
@@ -140,7 +144,8 @@ function placeOrder($conn, $customer_id) {
     echo json_encode(['status' => 'Checkout successful']);
 }
 
-
+/* Function to fetch previous orders to populate the your orders page
+   Fetches all orders corresponding to active customer_id*/
 function fetchPreviousOrders($conn, $customer_id) {
     
     $query = "SELECT * FROM orders WHERE customer_id = ?";
